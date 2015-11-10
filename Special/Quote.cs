@@ -12,6 +12,11 @@ namespace Tree
         {
             Printer.printQuote(t, n, p);
         }
+        /**
+        Quote: (quote x)
+           return exp.getCdr().getCar()
+        He wrote that on the board
+    */
     }
 }
 

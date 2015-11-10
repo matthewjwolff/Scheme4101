@@ -12,6 +12,15 @@ namespace Tree
         {
             Printer.printRegular(t, n, p);
         }
+        //Functions are given the regular form
+        /**
+        closure(fac).apply((5))
+        .
+       / \
+     foo
+
+
+    */
     }
 }
 

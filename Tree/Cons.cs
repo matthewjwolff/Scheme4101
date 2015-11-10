@@ -16,6 +16,11 @@ namespace Tree
             cdr = d;
             parseList();
         }
+
+        public Node eval(Environment env)
+        {
+            return form.eval(env);
+        }
     
         // parseList() `parses' special forms, constructs an appropriate
         // object of a subclass of Special, and stores a pointer to that
