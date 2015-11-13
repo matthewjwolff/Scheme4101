@@ -15,10 +15,16 @@ namespace Tree
 
         public override Node eval(Node t, Environment env)
         {
-            //builtin or closure I think
-            Node implementation = env.lookup(t.getCar());
-            //for "car", implementation is definitely a builtin
-            return implementation.apply(t.getCdr());
+            Node car = t.getCar().eval(env);
+            //Get the argument list
+            Node cdr = t.getCdr();
+            //Evaluate each argument, and replace the argument with its evaluated value
+            while(cdr != Nil.getInstance())
+            {
+                cdr.setCar(cdr.getCar().eval(env));
+                cdr = cdr.getCdr();
+            }
+            return car.apply(t.getCdr());
         }
         //Functions are given the regular form
         /**
