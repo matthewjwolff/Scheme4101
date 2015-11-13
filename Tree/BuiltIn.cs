@@ -119,13 +119,11 @@ namespace Tree
             }
             else if (symbol.getName().Equals("null?"))
             {
-                arg1.isNull();
-                return arg1;
+                return BoolLit.getInstance(symbol.isNull());
             }
             else if (symbol.getName().Equals("pair?"))
             {
-                arg1.isPair();
-                return arg1;
+                return BoolLit.getInstance(symbol.isPair());
             }
             else if (symbol.getName().Equals("eq?"))
             {
