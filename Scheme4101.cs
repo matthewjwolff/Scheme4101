@@ -49,14 +49,15 @@ public class Scheme4101
         Parser parser = new Parser(scanner, builder);
         Node root;
 
-        //Code copied from GB's email
-
-        // TODO: Create and populate the built-in environment and
-        // create the top-level environment
         var env = new Tree.Environment(); // create built-in environment
-        var id = new Ident("car");
-        env.define(id, new BuiltIn(id));
-        // TODO: populate the built-in environment
+        //Populate the builtin environment
+        Ident id;
+        string[] builtins = new string[] {"symbol?","number?","b+","b-","b*","b/","b=","b<","car","cdr","cons","set-car!","set-cdr!","null?","pair?","eq?","procedure?","read","write","display","newline","eval","apply","interaction-environment" };
+        foreach(string function in builtins)
+        {
+            id = new Ident(function);
+            env.define(id, new BuiltIn(id));
+        }
         env = new Tree.Environment(env); // create top-level environment
         // Read-eval-print loop
 
