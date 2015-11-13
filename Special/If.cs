@@ -13,6 +13,16 @@ namespace Tree
             Printer.printIf(t, n, p);
         }
 
+        public override Node eval(Node t, Environment env)
+        {
+            Node condition = t.getCdr().getCar();
+            Node trueBlock = t.getCdr().getCdr().getCar();
+            Node falseBlock = t.getCdr().getCdr().getCdr().getCar();
+            if (condition.eval(env) == BoolLit.getInstance(true))
+                return trueBlock.eval(env);
+            else return falseBlock.eval(env);
+        }
+
         /**
         Kristen:
         public Node eval(Node t, Environment e) {

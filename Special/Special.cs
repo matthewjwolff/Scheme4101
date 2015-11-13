@@ -11,11 +11,7 @@ namespace Tree
     abstract public class Special
     {
         public abstract void print(Node t, int n, bool p);
-        //TODO: Make this abstract when all Specials have been implemented
-        public virtual Node eval(Node t, Environment env) {
-            Console.Error.WriteLine("Error: "+this.GetType().Name+".eval() not yet implemented. Returning Nil...");
-            return Nil.getInstance();
-        }
+        public abstract Node eval(Node t, Environment env);
     }
 }
 
