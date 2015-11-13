@@ -47,13 +47,12 @@ namespace Tree
         // BuiltIn and Closure.
         public override Node apply (Node args)
         {
-            return new StringLit("Error: BuiltIn.apply not yet implemented");
-            /**
-            if(symbol.getName().Equals("car"))
-                arg1 = args.getCar();
+            if (symbol.getName().Equals("car"))
+            {
+                Node arg1 = args.getCar();
                 return arg1.getCar();
-            etc. for the rest of the list of built-ins
-    */
+            }
+            else return new StringLit("Error: Builtin[" + symbol.getName() + "].apply not yet implemented");
     	}
     }    
 }
