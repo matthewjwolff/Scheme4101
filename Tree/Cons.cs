@@ -19,7 +19,9 @@ namespace Tree
 
         public Node eval(Environment env)
         {
-            return form.eval(env);
+            //return form.eval(env);
+            Console.Error.WriteLine("Error: Cons.Eval not implemented yet");
+            return Nil.getInstance();
         }
     
         // parseList() `parses' special forms, constructs an appropriate
