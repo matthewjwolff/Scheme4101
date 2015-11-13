@@ -12,6 +12,12 @@ namespace Tree
         {
             Printer.printDefine(t, n, p);
         }
+        /**
+        Define:
+        (define var value)
+        (define (func params) ...eval list... )
+           > (define func (lambda (params) ...eval list...))
+        */
     }
 }
 

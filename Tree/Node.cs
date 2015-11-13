@@ -41,6 +41,7 @@ namespace Tree
         public virtual bool isSymbol() { return false; }  // Ident
         public virtual bool isNull()   { return false; }  // Nil
         public virtual bool isPair()   { return false; }  // Cons
+        public virtual bool isProcedure() { return false; } // Closure or BuiltIn
 
         // Since C# does not have covariant override, it is not possible
         // for the getCar and getCdr methods to implement the interface
@@ -76,6 +77,12 @@ namespace Tree
         public virtual string getName()
         {
             return "";
+        }
+
+        public virtual Node apply(Node args)
+        {
+            Console.Error.WriteLine("Error: " + this.getName() + " does not implement apply. Returning Nil...");
+            return Nil.getInstance();
         }
     }
 }
