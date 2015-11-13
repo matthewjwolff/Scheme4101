@@ -12,6 +12,14 @@ namespace Tree
         {
             Printer.printRegular(t, n, p);
         }
+
+        public override Node eval(Node t, Environment env)
+        {
+            //builtin or closure I think
+            Node implementation = env.lookup(t.getCar());
+            //for "car", implementation is definitely a builtin
+            return implementation.apply(t.getCdr());
+        }
         //Functions are given the regular form
         /**
         closure(fac).apply((5))
