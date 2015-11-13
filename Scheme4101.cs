@@ -49,7 +49,7 @@ public class Scheme4101
         Parser parser = new Parser(scanner, builder);
         Node root;
 
-        var env = new Tree.Environment(); // create built-in environment
+        Tree.Environment env = new Tree.Environment(); // create built-in environment
         //Populate the builtin environment
         Ident id;
         string[] builtins = new string[] {"symbol?","number?","b+","b-","b*","b/","b=","b<","car","cdr","cons","set-car!","set-cdr!","null?","pair?","eq?","procedure?","read","write","display","newline","eval","apply","interaction-environment" };
