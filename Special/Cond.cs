@@ -19,8 +19,8 @@ namespace Tree
             Node clause = clauseList.getCar();
             while(clause != Nil.getInstance())
             {
-                Node predicate = clause.getCar();
-                if(predicate.eval(env) == BoolLit.getInstance(true))
+                Node predicate = clause.getCar().eval(env);
+                if(predicate == BoolLit.getInstance(true) || predicate.getName() == "else")
                 {
                     Node expressionList = clause.getCdr();
                     //evaluate all expressions and return the result of the last evaluation
