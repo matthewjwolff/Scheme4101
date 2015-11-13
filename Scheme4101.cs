@@ -65,7 +65,7 @@ public class Scheme4101
         root = (Node) parser.parseExp();
         while (root != null) 
         {
-            root.print(0);
+            root.eval(env).print(0);
             root = (Node) parser.parseExp();
         }
 
