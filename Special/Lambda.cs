@@ -15,7 +15,18 @@ namespace Tree
 
         public override Node eval(Node t, Environment env)
         {
-            return new StringLit("Error: Lambda.eval not implemented yet");
+            //The closure's function member will look like:
+            /*
+               .
+              / \
+          lambda  .
+                 / \
+         arg list   .
+                   / \
+           body of f  ()
+
+    */
+            return new Closure(t, env);
         }
     }
 }
