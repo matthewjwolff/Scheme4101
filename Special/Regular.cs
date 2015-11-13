@@ -26,6 +26,12 @@ namespace Tree
             }
             return car.apply(t.getCdr());
         }
+        /**
+            node = (something that was passed in during the constructor, figure out what it is later
+            node.eval(param, env)
+            
+
+        */
         //Functions are given the regular form
         /**
         closure(fac).apply((5))
