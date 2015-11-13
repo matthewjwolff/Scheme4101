@@ -53,17 +53,18 @@ namespace Tree
             if (symbol.getName().Equals("symbol?"))
             {
                 arg1.isSymbol();
+                return arg1;
             }
             else if (symbol.getName().Equals("number?"))
             {
                 arg1.isNumber();
+                return arg1;
             }
             else if (symbol.getName().Equals("b+"))
             {
                 IntLit num1 = (IntLit)arg1;
                 IntLit num2 = (IntLit)arg2.getCar();
-                return new IntLit(num1.getValue() + num2.getValue());
-                
+                return new IntLit(num1.getValue() + num2.getValue());     
             }
             else if (symbol.getName().Equals("b-"))
             {
@@ -87,13 +88,13 @@ namespace Tree
             {
                 IntLit num1 = (IntLit)arg1;
                 IntLit num2 = (IntLit)arg2.getCar();
-                return new IntLit(num1.getValue() = num2.getValue());
+                return BoolLit.getInstance(num1.getValue() == num2.getValue());
             }
             else if (symbol.getName().Equals("b<"))
             {
                 IntLit num1 = (IntLit)arg1;
                 IntLit num2 = (IntLit)arg2.getCar();
-                return new IntLit(num1.getValue() < num2.getValue());
+                return BoolLit.getInstance((num1.getValue() < num2.getValue());
             }
             else if (symbol.getName().Equals("car"))
             {
