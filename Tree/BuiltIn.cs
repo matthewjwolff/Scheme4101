@@ -52,13 +52,11 @@ namespace Tree
 
             if (symbol.getName().Equals("symbol?"))
             {
-                arg1.isSymbol();
-                return arg1;
+                return BoolLit.getInstance(symbol.isSymbol());
             }
             else if (symbol.getName().Equals("number?"))
             {
-                arg1.isNumber();
-                return arg1;
+                return BoolLit.getInstance(symbol.isNumber());
             }
             else if (symbol.getName().Equals("b+"))
             {
