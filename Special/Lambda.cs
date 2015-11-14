@@ -11,7 +11,23 @@ namespace Tree
         public override void print(Node t, int n, bool p)
         {
             Printer.printLambda(t, n, p);
-  	}
+  	    }
+
+        public override Node eval(Node t, Environment env)
+        {
+            //The closure's function member will look like:
+            /*
+               .
+              / \
+          lambda  .
+                 / \
+         arg list   .
+                   / \
+           body of f  ()
+
+    */
+            return new Closure(t, env);
+        }
     }
 }
 

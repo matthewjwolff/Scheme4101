@@ -12,6 +12,18 @@ namespace Tree
         {
             Printer.printBegin(t, n, p);
         }
+
+        public override Node eval(Node t, Environment env)
+        {
+            Node expList = t.getCdr();
+            Node last = expList.getCar().eval(env);
+            while(expList.getCdr() != Nil.getInstance())
+            {
+                expList = expList.getCdr();
+                last = expList.getCar().eval(env);
+            }
+            return last;
+        }
     }
 }
 

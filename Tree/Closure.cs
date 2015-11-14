@@ -45,7 +45,18 @@ namespace Tree
         // BuiltIn and Closure.
         public override Node apply(Node args)
         {
-            return new StringLit("Error: Closure.apply not yet implemented");
+            //Environment in which to map the args
+            Environment closureEnv = new Environment(env);
+            Node lambdaArgsList = fun.getCdr().getCar();
+            //Bind each argument to its parameter in the environment
+            while(lambdaArgsList!=Nil.getInstance())
+            {
+                closureEnv.define(lambdaArgsList.getCar(), args.getCar());
+                lambdaArgsList = lambdaArgsList.getCdr();
+                args = args.getCdr();
+            }
+            Node functionBody = fun.getCdr().getCdr().getCar();
+            return functionBody.eval(closureEnv);
         }
     }    
 }

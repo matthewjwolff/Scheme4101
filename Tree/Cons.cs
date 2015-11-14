@@ -17,9 +17,9 @@ namespace Tree
             parseList();
         }
 
-        public Node eval(Environment env)
+        public override Node eval(Environment env)
         {
-            return form.eval(env);
+            return form.eval(this, env);
         }
     
         // parseList() `parses' special forms, constructs an appropriate

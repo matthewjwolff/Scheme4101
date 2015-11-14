@@ -79,6 +79,12 @@ namespace Tree
             return "";
         }
 
+        public virtual Node eval(Environment env)
+        {
+            Console.Error.WriteLine("Error: " + this.getName() + " does not (yet) implement eval. Returning Nil...");
+            return Nil.getInstance();
+        }
+
         public virtual Node apply(Node args)
         {
             Console.Error.WriteLine("Error: " + this.getName() + " does not implement apply. Returning Nil...");

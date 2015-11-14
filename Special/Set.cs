@@ -12,6 +12,15 @@ namespace Tree
         {
             Printer.printSet(t, n, p);
         }
+
+        public override Node eval(Node t, Environment env)
+        {
+            //arg1: set!
+            //arg2: variable
+            //arg3: value
+            env.assign(t.getCdr().getCar(), t.getCdr().getCdr().getCar().eval(env));
+            return new StringLit("set done");
+        }
     }
 }
 
