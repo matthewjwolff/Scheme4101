@@ -21,9 +21,16 @@ namespace Tree
     {
         private Node symbol;            // the Ident for the built-in function
 
+        protected static Environment interaction_environment = new Environment();
+
         public BuiltIn(Node s)		{ symbol = s; }
 
         public Node getSymbol()		{ return symbol; }
+
+        public BuiltIn(Environment env)
+        {
+            interaction_environment = env;
+        }
 
         // TODO: The method isProcedure() should be defined in
         // class Node to return false.
@@ -131,9 +138,22 @@ namespace Tree
                 {
                     string second = arg1.getName();
                     string third = arg2.getName();
-                    return BoolLit.getInstance(second.Equals(third)); 
+                    return BoolLit.getInstance(second.Equals(third));
                 }
-                return BoolLit.getInstance(arg1 == arg2);
+                else if (arg1.isNumber() && arg2.isNumber())
+                {
+                    int second = arg1.getValue();
+                    int third = arg2.getValue();
+                    return BoolLit.getInstance(second.Equals(third));
+                }
+                else if (arg1.isString() && arg2.isString())
+                {
+                    int second = arg1.getValue();
+                    int third = arg2.getValue();
+                    return BoolLit.getInstance(second.Equals(third));
+                }
+                else
+                    return BoolLit.getInstance(arg1 == arg2);
             }
             else if (symbol.getName().Equals("procedure?"))
             {
@@ -141,20 +161,23 @@ namespace Tree
             }
             else if (symbol.getName().Equals("read"))
             {
-               //DONT KNOW WHAT TO DO HERE.  
-               //I THINK READ AND WRITE HAS SOMETHING TO DO WITH PARSER 
+                Parse.Scanner scan = new Parse.Scanner(Console.In);
+                Parse.Parser pars = new Parse.Parser(scan, new TreeBuilder());
+                Node node = (Node)pars.parseExp();
+                return node;
             }
             else if (symbol.getName().Equals("write"))
             {
-           
+                arg1.print(0);
+                return new StringLit("");
             }
             else if (symbol.getName().Equals("display"))
             {
-
+                return arg1;
             }
             else if (symbol.getName().Equals("newline"))
             {
-                Console.WriteLine();               
+                return new StringLit("");              
             }
             else if (symbol.getName().Equals("eval"))
             {
@@ -166,11 +189,12 @@ namespace Tree
             }
             else if (symbol.getName().Equals("interaction-environment"))
             {
-                
+                return interaction_environment;
             }
             else
                 return new StringLit("Error: Builtin[" + symbol.getName() + "].apply not yet implemented");
     	}
     }    
+
 }
 

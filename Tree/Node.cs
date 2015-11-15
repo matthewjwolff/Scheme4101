@@ -74,7 +74,12 @@ namespace Tree
         {
             Console.Error.WriteLine("Error: argument of set-cdr! is not a pair");
         }
-  
+
+        public int getValue()
+        {
+            return 0;
+        }
+
         public virtual string getName()
         {
             return "";
