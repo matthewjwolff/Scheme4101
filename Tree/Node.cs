@@ -64,6 +64,12 @@ namespace Tree
             return null;
         }
 
+        public virtual int getValue()
+        {
+            Console.Error.WriteLine("Error: tried to get the value of a non-number node");
+            return 0;
+        }
+
         public virtual void setCar(Node a)
         {
             Console.Error.WriteLine("Error: argument of set-car! is not a pair");

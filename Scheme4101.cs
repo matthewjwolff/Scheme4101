@@ -7,8 +7,10 @@ using Tree;
 
 public class Scheme4101
 {
+    public static Tree.Environment global;
     public static int Main(string[] args)
     {
+        const string prompt = "> ";
         // Create scanner that reads from standard input
         Scanner scanner = new Scanner(Console.In);
         
@@ -59,12 +61,14 @@ public class Scheme4101
             env.define(id, new BuiltIn(id));
         }
         env = new Tree.Environment(env); // create top-level environment
+        global = env;
         // Read-eval-print loop
 
         // TODO: print prompt and evaluate the expression
         root = (Node) parser.parseExp();
         while (root != null) 
         {
+            Console.Write(prompt);
             root.eval(env).print(0);
             root = (Node) parser.parseExp();
         }

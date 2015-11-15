@@ -27,6 +27,11 @@ namespace Tree
         {
             return this;
         }
+
+        public string getString()
+        {
+            return stringVal;
+        }
     }
 }
 

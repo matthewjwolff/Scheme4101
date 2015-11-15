@@ -60,6 +60,7 @@
     <Compile Include="Special\Special.cs" />
     <Compile Include="Tree\BoolLit.cs" />
     <Compile Include="Tree\BuiltIn.cs" />
+    <Compile Include="Tree\NothingNode.cs" />
     <Compile Include="Tree\Closure.cs" />
     <Compile Include="Tree\Cons.cs" />
     <Compile Include="Tree\Environment.cs" />

@@ -17,7 +17,7 @@ namespace Tree
         {
             Node car = t.getCar().eval(env);
             Node cdr = t.getCdr().eval(env);
-            if (t.getCar().isSymbol())
+            if (car.isProcedure())
             {
                 //Will be evaluated to a procedure(?)
                 return car.apply(cdr);

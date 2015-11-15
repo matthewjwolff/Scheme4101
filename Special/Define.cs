@@ -21,14 +21,14 @@ namespace Tree
                 //variable is of the form (decl params...), ex: (foo x y)
                 Node declaration = variable.getCar();
                 Node parameters = variable.getCdr();
-                Cons lambda = new Cons(new Ident("lambda"),new Cons(parameters,t.getCdr().getCdr().getCar()));
+                Cons lambda = new Cons(new Ident("lambda"),new Cons(parameters,t.getCdr().getCdr()));
                 env.define(declaration,new Closure(lambda, env));
             }
             else
             {
                 env.define(variable, t.getCdr().getCdr().getCar().eval(env));
             }
-            return new StringLit("definition recorded");
+            return new NothingNode();
         }
         /**
         Define:
