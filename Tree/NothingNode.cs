@@ -4,7 +4,12 @@ namespace Tree
 {
     public class NothingNode : Node
     {
-        public NothingNode() { }
+        private static NothingNode instance = new NothingNode();
+        private NothingNode() { }
+        public static NothingNode getInstance()
+        {
+            return instance;
+        }
         public override void print(int n)
         {
             

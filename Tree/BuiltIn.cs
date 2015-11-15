@@ -47,9 +47,13 @@ namespace Tree
         // BuiltIn and Closure.
         public override Node apply(Node args)
         {
-            Node arg1 = args.getCar();
-            Node arg2 = args.getCdr();
-
+            Node arg1 = null;
+            Node arg2 = null;
+            if(args!=Nil.getInstance())
+            {
+                arg1 = args.getCar();
+                arg2 = args.getCdr();
+            }
             if (symbol.getName().Equals("symbol?"))
             {
                 return BoolLit.getInstance(arg1.isSymbol());
@@ -104,17 +108,16 @@ namespace Tree
             }
             else if (symbol.getName().Equals("cons"))
             {
-                arg1 = new Cons(getCar(), getCdr());
-                return arg1;
+                return new Cons(arg1, arg2.getCar());
             }
             else if (symbol.getName().Equals("set-car!"))
             {
-                arg1.setCar(arg2);
+                arg1.setCar(arg2.getCar());
                 return arg1;
             }
             else if (symbol.getName().Equals("set-cdr!"))
             {
-                arg1.setCdr(arg2);
+                arg1.setCdr(arg2.getCar());
                 return arg1;
             }
             else if (symbol.getName().Equals("null?"))
@@ -127,26 +130,26 @@ namespace Tree
             }
             else if (symbol.getName().Equals("eq?"))
             {
-                if (arg1.isSymbol() && arg2.isSymbol())
+                if (arg1.isSymbol() && arg2.getCar().isSymbol())
                 {
                     string second = arg1.getName();
-                    string third = arg2.getName();
+                    string third = arg2.getCar().getName();
                     return BoolLit.getInstance(second.Equals(third));
                 }
-                else if (arg1.isNumber() && arg2.isNumber())
+                else if (arg1.isNumber() && arg2.getCar().isNumber())
                 {
                     int second = arg1.getValue();
-                    int third = arg2.getValue();
+                    int third = arg2.getCar().getValue();
                     return BoolLit.getInstance(second.Equals(third));
                 }
-                else if (arg1.isString() && arg2.isString())
+                else if (arg1.isString() && arg2.getCar().isString())
                 {
                     int second = arg1.getValue();
-                    int third = arg2.getValue();
+                    int third = arg2.getCar().getValue();
                     return BoolLit.getInstance(second.Equals(third));
                 }
                 else
-                    return BoolLit.getInstance(arg1 == arg2);
+                    return BoolLit.getInstance(arg1 == arg2.getCar());
             }
             else if (symbol.getName().Equals("procedure?"))
             {
@@ -162,7 +165,7 @@ namespace Tree
             else if (symbol.getName().Equals("write"))
             {
                 arg1.print(0);
-                return new StringLit("");
+                return NothingNode.getInstance();
             }
             else if (symbol.getName().Equals("display"))
             {
@@ -170,11 +173,11 @@ namespace Tree
             }
             else if (symbol.getName().Equals("newline"))
             {
-                return new StringLit("");
+                return NothingNode.getInstance();
             }
             else if (symbol.getName().Equals("eval"))
             {
-                return arg1.eval((Environment)arg2);
+                return arg1.eval((Environment)(arg2.getCar()));
             }
             else if (symbol.getName().Equals("apply"))
             {

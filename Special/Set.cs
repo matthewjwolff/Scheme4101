@@ -19,7 +19,7 @@ namespace Tree
             //arg2: variable
             //arg3: value
             env.assign(t.getCdr().getCar(), t.getCdr().getCdr().getCar().eval(env));
-            return new StringLit("set done");
+            return NothingNode.getInstance();
         }
     }
 }

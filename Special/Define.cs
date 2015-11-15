@@ -28,7 +28,7 @@ namespace Tree
             {
                 env.define(variable, t.getCdr().getCdr().getCar().eval(env));
             }
-            return new NothingNode();
+            return NothingNode.getInstance();
         }
         /**
         Define:
