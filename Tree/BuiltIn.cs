@@ -92,7 +92,7 @@ namespace Tree
             {
                 IntLit num1 = (IntLit)arg1;
                 IntLit num2 = (IntLit)arg2.getCar();
-                return BoolLit.getInstance((num1.getValue() < num2.getValue());
+                return BoolLit.getInstance((num1.getValue() < num2.getValue()));
             }
             else if (symbol.getName().Equals("car"))
             {
@@ -127,19 +127,26 @@ namespace Tree
             }
             else if (symbol.getName().Equals("eq?"))
             {
-               
+                if (arg1.isSymbol() && arg2.isSymbol())
+                {
+                    string second = arg1.getName();
+                    string third = arg2.getName();
+                    return BoolLit.getInstance(second.Equals(third)); 
+                }
+                return BoolLit.getInstance(arg1 == arg2);
             }
             else if (symbol.getName().Equals("procedure?"))
             {
-
+                return BoolLit.getInstance(arg1.isProcedure());
             }
             else if (symbol.getName().Equals("read"))
             {
-
+               //DONT KNOW WHAT TO DO HERE.  
+               //I THINK READ AND WRITE HAS SOMETHING TO DO WITH PARSER 
             }
             else if (symbol.getName().Equals("write"))
             {
-
+           
             }
             else if (symbol.getName().Equals("display"))
             {
@@ -147,11 +154,11 @@ namespace Tree
             }
             else if (symbol.getName().Equals("newline"))
             {
-                
+                Console.WriteLine();               
             }
             else if (symbol.getName().Equals("eval"))
             {
-                return arg1;
+                return arg1.eval((Environment)arg2);
             }
             else if (symbol.getName().Equals("apply"))
             {
@@ -159,9 +166,10 @@ namespace Tree
             }
             else if (symbol.getName().Equals("interaction-environment"))
             {
-
+                
             }
-            else return new StringLit("Error: Builtin[" + symbol.getName() + "].apply not yet implemented");
+            else
+                return new StringLit("Error: Builtin[" + symbol.getName() + "].apply not yet implemented");
     	}
     }    
 }

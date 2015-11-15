@@ -49,10 +49,11 @@ namespace Tree
         }
    
         public Environment(Environment e)
-	{
+	    {
             frame = Nil.getInstance();
             env = e;
         }
+
 
         public override void print(int n) {
             // there got to be a more efficient way to print n spaces
